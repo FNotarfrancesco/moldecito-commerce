@@ -1,0 +1,15 @@
+{
+  "title": "Moldecito",
+  "description": "Moldecito - Cortantes, sellos y herramientas de repostería con agarre ergonómico patentado.",
+  "language": "es",
+  "icons": {
+    "icon": "/assets/logo-moldecito.webp"
+  },
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}

@@ -1,0 +1,94 @@
+@import 'tailwindcss';
+
+@font-face {
+  font-family: 'Causten';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/Causten.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Causten';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/Causten-Bold.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Causten';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/Causten-Bold.otf') format('opentype');
+}
+
+@theme {
+  --color-rosa-50: #fdf5f8;
+  --color-rosa-100: #fce7ee;
+  --color-rosa-200: #f8ccd9;
+  --color-rosa-600: #e04d7a;
+  --color-rosa-700: #c93b66;
+
+  --color-oscuro-500: #666666;
+  --color-oscuro-700: #333333;
+  --color-oscuro-900: #151515;
+
+  --color-surface: #ffffff;
+  --color-sand: #fbf8f9;
+
+  --font-sans: 'Causten', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+:root {
+  font-family: 'Causten', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: #151515;
+  background-color: #ffffff;
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background-color: #ffffff;
+  color: #151515;
+}
+
+/* Ensure all buttons, links, selects, and interactive elements have pointer cursor */
+button,
+[role="button"],
+a,
+select,
+summary,
+input[type="submit"],
+input[type="button"],
+input[type="reset"] {
+  cursor: pointer;
+}
+
+button:disabled,
+[role="button"][aria-disabled="true"],
+input:disabled {
+  cursor: not-allowed;
+}
+
+/* Minimalist scrollbars */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #fafafa;
+}
+::-webkit-scrollbar-thumb {
+  background: #e5e5e5;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #c5c5c5;
+}

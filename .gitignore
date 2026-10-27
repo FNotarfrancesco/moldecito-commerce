@@ -1,0 +1,42 @@
+# Dependencies
+node_modules/
+*/node_modules/
+
+# Production builds
+dist/
+*/dist/
+build/
+
+# Environment files and secrets (CRITICAL: Never commit real credentials)
+.env
+.env.*
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+server/.env
+server/.env.*
+*.env
+!.env.example
+!server/.env.example
+
+# Cache and logs
+.cache/
+.vite/
+*.log
+*-debug.log*
+logs/
+*.tsbuildinfo
+.tmp-*
+.claude-replay.*
+
+# OS and Editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Figma Make specifics
+/.figma/design-context/
+/.plugins/
+/.opencode-skills/
