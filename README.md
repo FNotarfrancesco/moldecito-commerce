@@ -96,3 +96,4 @@ npm run dev:server     # Solo Backend (tsx watch)
 ## 📄 Licencia
 Este proyecto fue desarrollado como solución e-commerce a medida.
 Todos los derechos sobre la marca, diseños y modelos 3D pertenecen a **Moldecito**.
+

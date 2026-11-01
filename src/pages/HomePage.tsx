@@ -5,6 +5,51 @@ import type { Product, Category } from '../types';
 import { fetchFeaturedProducts, fetchCategories } from '../lib/api';
 import ProductCard from '../components/ProductCard';
 
+/* Crisp infinite-resolution SVG clouds matching the illustration's flat/stepped vector style */
+function CloudSteppedA({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 160 36" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+      <path
+        d="M4 33 A13 12 0 0 1 20 22 A16 15 0 0 1 47 19 A25 24 0 0 1 90 14 A19 16 0 0 1 121 16 A11 10 0 0 1 139 19 A11 8 0 0 1 155 23 L95 23 A12 12 0 0 1 102 33 Z"
+        fill="#FDE6EE"
+      />
+    </svg>
+  );
+}
+
+function CloudFlatB({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 160 34" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+      <path
+        d="M5 31 A13 10 0 0 1 24 24 A13 11 0 0 1 43 19 A19 16 0 0 1 76 17 A11 9 0 0 1 88 16 A24 23 0 0 1 131 16 A16 17 0 0 1 155 31 Z"
+        fill="#FDE6EE"
+      />
+    </svg>
+  );
+}
+
+function CloudSteppedC({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 140 32" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+      <path
+        d="M4 29 A18 11 0 0 1 29 20 A12 10 0 0 1 43 14 A23 20 0 0 1 84 11 A12 10 0 0 1 100 13 A13 11 0 0 1 119 17 A11 8 0 0 1 135 21 L81 21 A10 10 0 0 1 87 29 Z"
+        fill="#FDE6EE"
+      />
+    </svg>
+  );
+}
+
+function CloudOrganicD({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 190 42" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+      <path
+        d="M6 38 A15 12 0 0 1 27 27 A18 16 0 0 1 56 17 A30 27 0 0 1 112 14 A20 17 0 0 1 144 21 A15 12 0 0 1 168 26 A14 10 0 0 1 184 38 Z"
+        fill="#FDE6EE"
+      />
+    </svg>
+  );
+}
+
 export default function HomePage() {
   const [featured, setFeatured] = useState<Product[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
@@ -37,52 +82,122 @@ export default function HomePage() {
   };
 
   return (
-    <div className="space-y-20 pb-16">
-      {/* Hero Section — Full-Width Cinematic Video (Pura Vida style) */}
-      <section className="relative w-full overflow-hidden min-h-[500px] sm:min-h-[580px] lg:min-h-[640px] flex items-center justify-center">
-        {/* Full-bleed background video (responsive: mobile vertical / desktop horizontal) */}
-        <video
-          key={isMobile ? 'mobile-video' : 'desktop-video'}
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
-          poster="/assets/hero-poster.jpg"
-          className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none"
-        >
-          <source
-            src={isMobile ? '/assets/hero-video-mobile.mp4' : '/assets/hero-video.mp4'}
-            type="video/mp4"
+    <div className="space-y-16 sm:space-y-20 pb-16">
+      {/* Hero Section — 3-Layer Live Illustration (Sky + Infinite Clouds + Foreground Mountains & Arch) */}
+      <section className="relative w-full overflow-hidden select-none">
+        {/* ================= DESKTOP HERO (1964x1094 Hi-Res Illustration) ================= */}
+        <div className="hidden sm:block relative w-full aspect-[1964/1094] bg-[#352627] overflow-hidden">
+          {/* Layer 1: Untouched Full-Resolution Base Illustration (100% lossless sky & shadows) */}
+          <img
+            src="/assets/hero_desktop_noclouds.jpg?v=3"
+            alt=""
+            className="absolute inset-0 z-0 w-full h-full object-fill pointer-events-none"
           />
-          Tu navegador no soporta videos HTML5.
-        </video>
 
-        {/* Soft dark overlay for contrast */}
-        <div className="absolute inset-0 bg-black/40 backdrop-brightness-[0.92]" />
+          {/* Layer 2A: Upper & Mid Clouds — Medium Speed Loop (100% Vector SVG) */}
+          <div className="absolute inset-0 z-10 pointer-events-none flex w-[200%] animate-clouds-medium">
+            {[0, 1].map((half) => (
+              <div key={half} className="relative w-1/2 h-full">
+                <CloudSteppedA className="absolute top-[15.5%] left-[6%] w-[15.2%] h-auto" />
+                <CloudFlatB className="absolute top-[11%] left-[74%] w-[15.2%] h-auto" />
+                <CloudOrganicD className="absolute top-[21.5%] left-[41%] w-[17.5%] h-auto" />
+                <CloudSteppedC className="absolute top-[47.2%] left-[19%] w-[13.2%] h-auto" />
+              </div>
+            ))}
+          </div>
 
-        {/* Hero Content */}
-        <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center text-white space-y-6">
-          <span className="text-[11px] font-bold tracking-[0.25em] text-white/90 uppercase inline-block bg-white/10 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/20 shadow-xs">
-            Herramientas de Repostería
-          </span>
+          {/* Layer 2B: Distant & Horizon Clouds — Slow Parallax Loop (100% Vector SVG) */}
+          <div className="absolute inset-0 z-10 pointer-events-none flex w-[200%] animate-clouds-slow">
+            {[0, 1].map((half) => (
+              <div key={half} className="relative w-1/2 h-full">
+                <CloudOrganicD className="absolute top-[17.5%] left-[84%] w-[19%] h-auto" />
+                <CloudSteppedC className="absolute top-[44.8%] left-[77%] w-[12%] h-auto" />
+                <CloudSteppedA className="absolute top-[49.2%] left-[64%] w-[13.5%] h-auto" />
+                <CloudFlatB className="absolute top-[33%] left-[2%] w-[13.5%] h-auto" />
+              </div>
+            ))}
+          </div>
 
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.08] max-w-3xl mx-auto drop-shadow-sm">
-            Diseños pensados <br className="hidden sm:inline" />
-            para tus mejores creaciones.
-          </h1>
+          {/* Layer 3: Hi-Res Foreground Cutout ("MOLDECITO" Arch + Cookie Cutter Mountains) */}
+          <img
+            src="/assets/hero-fg-desktop.png?v=3"
+            alt="Moldecito"
+            className="absolute inset-0 z-20 w-full h-full object-fill pointer-events-none"
+          />
 
-          <p className="text-sm sm:text-base text-white/90 max-w-xl mx-auto font-normal leading-relaxed drop-shadow-xs">
-            Cortantes y sellos con agarre trasero patentado. Diseñados para cortar con máxima precisión y sin fatiga.
-          </p>
+          {/* Layer 4: Compact Text & CTA Button in the dark gap between the Arch and Mountains */}
+          <div className="absolute inset-x-0 top-[26.5%] z-30 flex flex-col items-center text-center px-4 pointer-events-none">
+            <h1 className="font-fredoka text-lg md:text-xl lg:text-[25px] xl:text-[28px] leading-[1.16] font-semibold text-[#FDE6EE] tracking-wide max-w-md drop-shadow-[0_2px_10px_rgba(40,24,28,0.95)]">
+              Diseños pensados para <br />
+              tus mejores creaciones.
+            </h1>
 
-          <div className="pt-2">
-            <Link
-              to="/catalogo"
-              className="inline-block px-10 py-4 bg-white hover:bg-rosa-50 text-gray-900 text-xs font-bold tracking-[0.16em] uppercase rounded-full transition shadow-md hover:shadow-lg active:scale-95"
-            >
-              Ver Catálogo
-            </Link>
+            <div className="mt-2.5 lg:mt-3.5 pointer-events-auto">
+              <Link
+                to="/catalogo"
+                className="inline-block px-7 lg:px-9 py-2.5 lg:py-3 bg-[#F49BC2] hover:bg-[#eb8ab5] text-white text-[11px] lg:text-xs font-black tracking-[0.18em] uppercase rounded-full transition shadow-[0_6px_20px_rgba(0,0,0,0.45)] drop-shadow-[0_1px_2px_rgba(0,0,0,0.2)] active:scale-95"
+              >
+                Ver Catálogo
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        {/* ================= MOBILE HERO (1340x2400 3x Retina Illustration) ================= */}
+        <div className="sm:hidden relative w-full aspect-[1340/2400] bg-[#3C292D] overflow-hidden">
+          {/* Layer 1: Base Illustration (100% lossless sky & shadows) */}
+          <img
+            src="/assets/hero_mobile_noclouds.jpg?v=3"
+            alt=""
+            className="absolute inset-0 z-0 w-full h-full object-fill pointer-events-none"
+          />
+
+          {/* Layer 2A: Upper & Mid Clouds — Medium Speed Loop (100% Vector SVG) */}
+          <div className="absolute inset-0 z-10 pointer-events-none flex w-[200%] animate-clouds-medium">
+            {[0, 1].map((half) => (
+              <div key={half} className="relative w-1/2 h-full">
+                <CloudFlatB className="absolute top-[6%] left-[60%] w-[27.5%] h-auto" />
+                <CloudSteppedA className="absolute top-[13%] left-[6%] w-[27%] h-auto" />
+                <CloudOrganicD className="absolute top-[37.5%] left-[2%] w-[31%] h-auto" />
+                <CloudSteppedC className="absolute top-[48.5%] left-[14%] w-[23.5%] h-auto" />
+              </div>
+            ))}
+          </div>
+
+          {/* Layer 2B: Distant & Horizon Clouds — Slow Parallax Loop (100% Vector SVG) */}
+          <div className="absolute inset-0 z-10 pointer-events-none flex w-[200%] animate-clouds-slow">
+            {[0, 1].map((half) => (
+              <div key={half} className="relative w-1/2 h-full">
+                <CloudOrganicD className="absolute top-[15.2%] left-[72%] w-[32%] h-auto" />
+                <CloudSteppedC className="absolute top-[25.5%] left-[38%] w-[21%] h-auto" />
+                <CloudFlatB className="absolute top-[46.8%] left-[73%] w-[21%] h-auto" />
+                <CloudSteppedA className="absolute top-[50.2%] left-[61%] w-[23.5%] h-auto" />
+              </div>
+            ))}
+          </div>
+
+          {/* Layer 3: Hi-Res Foreground Cutout ("MOLDECITO" Arch + Cookie Cutter Mountains) */}
+          <img
+            src="/assets/hero-fg-mobile.png?v=3"
+            alt="Moldecito"
+            className="absolute inset-0 z-20 w-full h-full object-fill pointer-events-none"
+          />
+
+          {/* Layer 4: Compact Text & CTA Button in the dark gap between the Arch and Mountains */}
+          <div className="absolute inset-x-0 top-[34.5%] z-30 flex flex-col items-center text-center px-6 pointer-events-none">
+            <h1 className="font-fredoka text-[19px] leading-[1.18] font-semibold text-[#FDE6EE] tracking-wide drop-shadow-[0_2px_10px_rgba(40,24,28,0.95)]">
+              Diseños pensados para <br />
+              tus mejores creaciones.
+            </h1>
+
+            <div className="mt-3 pointer-events-auto">
+              <Link
+                to="/catalogo"
+                className="inline-block px-8 py-3 bg-[#F49BC2] hover:bg-[#eb8ab5] text-white text-xs font-black tracking-[0.18em] uppercase rounded-full transition shadow-[0_6px_20px_rgba(0,0,0,0.45)] drop-shadow-[0_1px_2px_rgba(0,0,0,0.2)] active:scale-95"
+              >
+                Ver Catálogo
+              </Link>
+            </div>
           </div>
         </div>
       </section>

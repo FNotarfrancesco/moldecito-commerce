@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap');
 @import 'tailwindcss';
 
 @font-face {
@@ -24,6 +25,22 @@
   src: url('/fonts/Causten-Bold.otf') format('opentype');
 }
 
+@font-face {
+  font-family: 'Causten';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url('/fonts/Causten-Bold.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Causten';
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url('/fonts/Causten-Bold.otf') format('opentype');
+}
+
 @theme {
   --color-rosa-50: #fdf5f8;
   --color-rosa-100: #fce7ee;
@@ -39,6 +56,11 @@
   --color-sand: #fbf8f9;
 
   --font-sans: 'Causten', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-fredoka: 'Fredoka', 'Causten', cursive, sans-serif;
+}
+
+.font-fredoka {
+  font-family: 'Fredoka', 'Causten', cursive, sans-serif;
 }
 
 :root {
@@ -91,4 +113,24 @@ input:disabled {
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #c5c5c5;
+}
+
+/* Infinite horizontal cloud loop animations for Hero */
+@keyframes cloud-marquee-right {
+  0% {
+    transform: translate3d(-50%, 0, 0);
+  }
+  100% {
+    transform: translate3d(0%, 0, 0);
+  }
+}
+
+.animate-clouds-slow {
+  animation: cloud-marquee-right 56s linear infinite;
+  will-change: transform;
+}
+
+.animate-clouds-medium {
+  animation: cloud-marquee-right 38s linear infinite;
+  will-change: transform;
 }
